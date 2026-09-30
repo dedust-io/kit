@@ -53,7 +53,7 @@ export namespace PoolStorage {
         swapActive: input.swapActive ?? false,
         liquidity: input.liquidity ?? 0n,
         reserveX: input.reserveX ?? 0n,
-        reserveY: input.reserveX ?? 0n,
+        reserveY: input.reserveY ?? 0n,
     });
 
     export const load = (source: Slice): PoolStorage => {

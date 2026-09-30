@@ -93,13 +93,15 @@ export namespace PoolConfig {
             .storeAddress(poolConfig.creatorAddress)
             .storeUint(poolConfig.baseFeeBPS, 16)
             .storeUint(poolConfig.creatorFeeBPS, 16)
-            .storeMaybeBuilder(
+            // Activations are `Maybe ^Activation`: the pool code and `load` above read a
+            // presence bit followed by a reference, so they must be stored as a reference.
+            .storeMaybeRef(
                 poolConfig.depositActivation &&
                     beginCell().store(
                         Activation.store(poolConfig.depositActivation),
                     ),
             )
-            .storeMaybeBuilder(
+            .storeMaybeRef(
                 poolConfig.swapActivation &&
                     beginCell().store(
                         Activation.store(poolConfig.swapActivation),
